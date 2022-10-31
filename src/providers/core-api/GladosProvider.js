@@ -4,4 +4,8 @@ export default {
   getEntities() {
     return coreApiClient.sendRequest("get", "/entities", {})
   },
+
+  setStatus(data) {
+    return coreApiClient.sendRequest("put", `/entities/${data.id}`, data)
+  },
 }
