@@ -10,7 +10,7 @@
           id="cars"
           v-model="selectType"
           @change="changeSelected">
-          <option :value="null">selectionner un type</option>
+          <option :value="1">select a type</option>
 
           <option
             v-for="(type, index) in types"
@@ -19,6 +19,38 @@
 
         </select>
       </div>
+      <div>
+
+        <select
+          id="cars"
+          v-model="selectStatus"
+          @change="changeSelectedRoom">
+          <option :value="1">select a status</option>
+
+          <option
+            v-for="(type, index) in rooms"
+            :key="index"
+            :value="type.value">{{ type.label }}</option>
+
+        </select>
+      </div>
+
+      <div>
+
+        <select
+          id="cars"
+          v-model="selectRoom"
+          @change="changeSelectedStatus">
+          <option :value="1">select a Room</option>
+
+          <option
+            v-for="(type, index) in status"
+            :key="index"
+            :value="type.value">{{ type.label }}</option>
+
+        </select>
+      </div>
+
       <div>
         <input
           type="text"
@@ -59,7 +91,9 @@ export default {
   data() {
     return {
       keyWord: "",
-      selectType: "",
+      selectType: "1",
+      selectRoom: "1",
+      selectStatus: "1",
       types: [
         {
           label: "all",
@@ -80,6 +114,34 @@ export default {
         }, {
           label: "air_conditioner",
           value: "air_conditioner"
+        } ],
+      rooms: [
+        {
+          label: "all",
+          value: "all"
+        },
+
+        {
+          label: "room",
+          value: "room"
+        },
+        {
+          label: "bedroom",
+          value: "sensor"
+        } ],
+      status: [
+        {
+          label: "all",
+          value: "all"
+        },
+
+        {
+          label: "on",
+          value: "on"
+        },
+        {
+          label: "off",
+          value: "off"
         } ],
       entities: [
         {
@@ -186,6 +248,12 @@ export default {
         .finally(() => {
           this.isLoading = false
         })
+    },
+    changeSelectedRoom(){
+
+    },
+    changeSelectedStatus(){
+      this.entitieToDisplay = this.entities.filter((entitie) => entitie.status === this.selectStatus)
     },
   },
 

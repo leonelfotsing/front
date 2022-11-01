@@ -2,6 +2,8 @@
 
 
   <div>
+
+
     <div v-if="status === 'off' || status === 'on' ">
 
       <label class="switch">
@@ -24,7 +26,6 @@
 
 
 
-
 </template>
 
 <script>
@@ -40,15 +41,13 @@ export default {
 
 
   },
-  created() {
 
-  },
   mounted(){
     this.swictchStatus = this.status === "on" ? true : false
   },
   computed: {
     checked(){
-      return this.swictchStatus
+      return this.status === "on" ? true : false
     }
   },
   data() {
